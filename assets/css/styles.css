@@ -1,0 +1,21 @@
+img {
+    padding: 10px
+}
+
+.jumbotron-fluid {
+    padding: 10px;
+    margin: 20px 20px 0 20px;
+    
+}
+
+#gifDiv {
+    margin: 20px;
+    width: 80%;
+    Float: left
+}
+
+#newBtn {
+    margin: 20px;
+    float: left;
+    width: auto;
+}
