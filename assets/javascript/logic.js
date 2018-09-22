@@ -28,13 +28,16 @@ $(document).ready(function () {
 
                 // function that grabs the rating and image url's and loops through to grab all 10
                 .then(function (response) {
-                    
+
                     //loop to go through the responses
                     for (var g = 0; g < response.data.length; g++) {
+
                         //var for initial still url
                         var imageUrl = response.data[g].images.fixed_height_still.url;
+
                         //var for animate url to be used later
                         var animateUrl = response.data[g].images.fixed_height.url;
+
                         // creates the image tag for the gif includes all the attributes needed
                         var gameImage = $("<img>");
                         gameImage.attr("src", imageUrl);
@@ -43,12 +46,14 @@ $(document).ready(function () {
                         gameImage.attr("data-still", imageUrl);
                         gameImage.attr("data-animate", animateUrl);
                         gameImage.attr("id", "image");
+                        gameImage.attr("data-state", "still");
                         var rating = "<div id='ratings'> <p>Rating: " + response.data[g].rating + " </p></div>";
                         $("#gifDiv").prepend(rating);
                         $("#ratings").append(gameImage);
                     };
 
-                    $("#image").on("click", function () {
+                    //click function that adjusts the state from still to animate.
+                    $("img").on("click", function () {
                         var state = $(this).attr("data-state");
                         if (state == "still") {
                             $(this).attr("src", $(this).attr("data-animate"));
@@ -60,11 +65,10 @@ $(document).ready(function () {
                         }
                     });
                 });
-
         });
     }
 
-
+    //click function that adds new buttons to the array and reloads the button set
     $(".btn").on("click", function (event) {
         event.preventDefault();
         var newBtnVal = $("#gameInput").val().trim()
@@ -74,12 +78,13 @@ $(document).ready(function () {
 
     })
 
-    loadButtons();
-
+    
+    //clears all of the gifs and buttons so you can restart the list.
     $("#gameClear").on("click", function () {
         $("#btnDiv").empty();
         topics = [];
         $("#gifDiv").empty();
     })
-
+    
+    loadButtons();
 })
